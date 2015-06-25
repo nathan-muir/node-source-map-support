@@ -467,6 +467,10 @@ exports.install = function(options) {
     var installHandler = 'handleUncaughtExceptions' in options ?
       options.handleUncaughtExceptions : true;
 
+    // Allow stack frames to be wrapped by custom methods.
+    if (options.wrapCallSite)
+      wrapCallSite = options.wrapCallSite;
+
     // Provide the option to not install the uncaught exception handler. This is
     // to support other uncaught exception handlers (in test frameworks, for
     // example). If this handler is not installed and there are no other uncaught
